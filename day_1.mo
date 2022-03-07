@@ -87,14 +87,19 @@ actor {
         var filtered : [Nat] = Array.filter(array, func (val : Nat) : Bool {
             return val != n;
         });
-        return filtered
+        return filtered;
     };
 
-    // // // Challenge 10
-    // // // selection_sort
-    // public func selection_sort(array : [Nat]) : async [Nat] {
-    //     var filtered : [Nat] = []
-
-    // };
+    // // Challenge 10
+    // // selection_sort
+    public func selection_sort(array : [Nat]) : async [Nat] {
+        let length = array.size();
+        var sorted : [Nat] = [];
+        // for (j in Iter.range(0, length-1)){
+        //     for (i in Iter.range(0, length-1)){
+        //     };
+        // };
+        return sorted;
+    };
 
 };
