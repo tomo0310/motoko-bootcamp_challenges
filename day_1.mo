@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Iter "mo:base/Iter";
 
 actor {
 
@@ -38,7 +39,7 @@ actor {
     // dfx canister call day_1 divide '(5,10)'
     // dfx canister call day_1 divide '(5,12)'
     public func divide(n : Nat, m : Nat) : async Bool {
-        if (m % n == 0){
+        if (n % m == 0){
             return true;
         }else{
             return false;
@@ -91,15 +92,21 @@ actor {
     };
 
     // // Challenge 10
-    // // selection_sort
+    // // dfx canister call day_1 selection_sort '(vec{3;6;2;5})'
     public func selection_sort(array : [Nat]) : async [Nat] {
         let length = array.size();
-        var sorted : [Nat] = [];
-        // for (j in Iter.range(0, length-1)){
-        //     for (i in Iter.range(0, length-1)){
-        //     };
-        // };
-        return sorted;
+        var sorted : [var Nat] = Array.thaw(array);
+        for (j in Iter.range(0, length-1)){
+            var minindex = j;
+            for (i in Iter.range(j+1, length-1)){
+                if (sorted[minindex] > sorted[i]){
+                    minindex := i;
+                };
+            };
+            let tmp = sorted[j];
+            sorted[j] := sorted[minindex];
+            sorted[minindex] := tmp;
+        };
+        return Array.freeze(sorted);
     };
-
 };
